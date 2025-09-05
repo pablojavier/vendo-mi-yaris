@@ -360,7 +360,7 @@
                 <h1>Toyota Yaris 2022</h1>
                 <p>XLS Pack CVT • 12.000 km • Único dueño • Color rojo</p>
                 <div class="price" id="main-price">Cargando precio...</div>
-                <div class="price-subtitle">USD 22.000 al cambio BCRA</div>
+                <div class="price-subtitle">Precio actualizado</div>
                 
                 <div class="action-buttons">
                     <a href="https://wa.me/5491112345678?text=Hola! Me interesa el Toyota Yaris 2022 XLS Pack CVT" class="btn btn-whatsapp">
@@ -499,7 +499,7 @@
 
                         <div style="background: rgba(255,255,255,0.2); padding: 30px; border-radius: 10px; margin-top: 30px;">
                             <h2 style="font-size: 3rem; margin: 0;" id="final-price">Cargando precio...</h2>
-                            <p style="margin: 10px 0 0 0; font-size: 1.2rem;">USD 22.000 • Cotización BCRA del día</p>
+                            <p style="margin: 10px 0 0 0; font-size: 1.2rem;">Precio competitivo de mercado</p>
                         </div>
                     </div>
                 </section>
@@ -526,23 +526,23 @@
             return '$' + Math.round(price).toLocaleString('es-AR');
         }
         
-        // Función para obtener la cotización del dólar BCRA
+        // Función para obtener la cotización del dólar oficial
         async function getDollarRate() {
             try {
-                // Primero intentamos con la API gratuita de estadisticasbcra.com
-                const response = await fetch('https://api.estadisticasbcra.com/usd_of');
+                // Usar DolarAPI.com para obtener cotización oficial
+                const response = await fetch('https://dolarapi.com/v1/dolares/oficial');
                 if (response.ok) {
                     const data = await response.json();
-                    // La API devuelve un array, tomamos el último valor
-                    if (data && data.length > 0) {
-                        return data[data.length - 1].v; // 'v' es el valor
+                    // La API devuelve un objeto con 'venta' para el precio de venta
+                    if (data && data.venta) {
+                        return data.venta;
                     }
                 }
                 throw new Error('API no disponible');
             } catch (error) {
                 console.log('Error obteniendo cotización:', error);
                 // Valor de respaldo actualizado (dólar oficial aproximado)
-                return 1000; // Valor de respaldo conservador
+                return 1020; // Valor de respaldo conservador actualizado
             }
         }
         
