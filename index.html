@@ -542,7 +542,7 @@
             } catch (error) {
                 console.log('Error obteniendo cotización:', error);
                 // Valor de respaldo actualizado (dólar oficial aproximado)
-                return 1020; // Valor de respaldo conservador actualizado
+                return 1390; // Valor de respaldo actualizado
             }
         }
         
@@ -570,7 +570,7 @@
             } catch (error) {
                 console.error('Error actualizando precios:', error);
                 // En caso de error, mostrar precio de respaldo
-                const fallbackPrice = formatPrice(CAR_PRICE_USD * 1000);
+                const fallbackPrice = formatPrice(CAR_PRICE_USD * 1390);
                 document.getElementById('main-price').textContent = fallbackPrice;
                 document.getElementById('final-price').textContent = fallbackPrice;
             }
