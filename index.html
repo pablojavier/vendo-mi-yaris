@@ -210,10 +210,70 @@
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         .photo-item:hover {
             transform: scale(1.05);
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+            transition: transform 0.2s;
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .photo-overlay {
@@ -446,36 +506,36 @@
                 <section class="section">
                     <h2>📸 Galería de fotos</h2>
                     <div class="gallery">
-                        <div class="photo-item">
-                            <img src="images/frente.jpg" alt="Vista frontal Toyota Yaris" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                        <div class="photo-item" data-full="images/frente.jpg">
+                            <img src="images/thumbs/frente.jpg" alt="Vista frontal Toyota Yaris" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
                             <div class="photo-overlay">🚗 Vista Frontal</div>
                         </div>
-                        <div class="photo-item">
-                            <img src="images/frente_derecho.jpg" alt="Vista frontal derecha Toyota Yaris" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                        <div class="photo-item" data-full="images/frente_derecho.jpg">
+                            <img src="images/thumbs/frente_derecho.jpg" alt="Vista frontal derecha Toyota Yaris" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
                             <div class="photo-overlay">🚗 Vista Frontal Derecha</div>
                         </div>
-                        <div class="photo-item">
-                            <img src="images/frente_izquierdo.jpg" alt="Vista frontal izquierda Toyota Yaris" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                        <div class="photo-item" data-full="images/frente_izquierdo.jpg">
+                            <img src="images/thumbs/frente_izquierdo.jpg" alt="Vista frontal izquierda Toyota Yaris" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
                             <div class="photo-overlay">🚗 Vista Frontal Izquierda</div>
                         </div>
-                        <div class="photo-item">
-                            <img src="images/derecha.jpg" alt="Vista lateral derecha Toyota Yaris" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                        <div class="photo-item" data-full="images/derecha.jpg">
+                            <img src="images/thumbs/derecha.jpg" alt="Vista lateral derecha Toyota Yaris" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
                             <div class="photo-overlay">👁️ Vista Lateral Derecha</div>
                         </div>
-                        <div class="photo-item">
-                            <img src="images/izquierda.jpg" alt="Vista lateral izquierda Toyota Yaris" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                        <div class="photo-item" data-full="images/izquierda.jpg">
+                            <img src="images/thumbs/izquierda.jpg" alt="Vista lateral izquierda Toyota Yaris" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
                             <div class="photo-overlay">👁️ Vista Lateral Izquierda</div>
                         </div>
-                        <div class="photo-item">
-                            <img src="images/trasera_izquierda.jpg" alt="Vista trasera izquierda Toyota Yaris" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                        <div class="photo-item" data-full="images/trasera_izquierda.jpg">
+                            <img src="images/thumbs/trasera_izquierda.jpg" alt="Vista trasera izquierda Toyota Yaris" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
                             <div class="photo-overlay">🔄 Vista Trasera</div>
                         </div>
-                        <div class="photo-item">
-                            <img src="images/interior.jpg" alt="Interior Toyota Yaris" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                        <div class="photo-item" data-full="images/interior.jpg">
+                            <img src="images/thumbs/interior.jpg" alt="Interior Toyota Yaris" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
                             <div class="photo-overlay">🪑 Interior</div>
                         </div>
-                        <div class="photo-item">
-                            <img src="images/volante.jpg" alt="Volante Toyota Yaris" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                        <div class="photo-item" data-full="images/volante.jpg">
+                            <img src="images/thumbs/volante.jpg" alt="Volante Toyota Yaris" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
                             <div class="photo-overlay">🎛️ Volante</div>
                         </div>
                     </div>
@@ -493,6 +553,14 @@
     <a href="#" class="floating-whatsapp whatsapp-link" data-msg="Hola! Me interesa el Toyota Yaris 2022 XLS Pack CVT">
         💬
     </a>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Vista ampliada">
+        </div>
+    </div>
 
     <script>
         // Número de WhatsApp ofuscado (codificado en base64)
@@ -512,6 +580,42 @@
             document.querySelectorAll('.whatsapp-link').forEach(function(link) {
                 const message = link.getAttribute('data-msg') || '';
                 link.href = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(message);
+            });
+
+            // Lightbox functionality
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxClose = document.getElementById('lightbox-close');
+            const photoItems = document.querySelectorAll('.photo-item');
+
+            // Abrir lightbox al hacer click en una foto
+            photoItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    const fullImageSrc = this.getAttribute('data-full');
+                    const altText = this.querySelector('img').getAttribute('alt');
+                    lightboxImg.src = fullImageSrc;
+                    lightboxImg.alt = altText;
+                    lightbox.classList.add('active');
+                });
+            });
+
+            // Cerrar lightbox al hacer click en X
+            lightboxClose.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+            });
+
+            // Cerrar lightbox al hacer click fuera de la imagen
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                }
+            });
+
+            // Cerrar lightbox con tecla ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                }
             });
         });
     </script>
